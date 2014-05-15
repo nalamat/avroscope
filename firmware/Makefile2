@@ -1,0 +1,60 @@
+# makefile to build a C++ library
+#
+# on the command line:
+#   make all      - build the program
+#   make clean    - remove all built files
+#
+# stuff you may want to edit:
+#
+#   PRG         - the name of the program
+#   SRC         - the list of CPP files to be compiled
+#	HEADERS     - the list of H files used by the program
+#   MCU_TARGET  - the microprocessor for which we're building
+#   F_CPU	- the processor speed
+
+PRG            = avroscope
+SRC            = ../main.cpp ../usbdrv/usbdrv.c ../usbdrv/usbdrvasm.c ../usbdrv/oddebug.c
+HEADERS        = 
+MCU_TARGET     = atmega32
+F_CPU	       = 16000000
+
+OBJ            = $(SRC:.cpp=.o)
+OPTIMIZE       = -Os
+#OPTIMIZE       = 
+DEFS           = -c -D F_CPU=$(F_CPU) 
+LIBS           = 
+
+# compile of .c auto with $(CC) -c $(CPPFLAGS) $(CFLAGS)
+# compile of .cpp auto with (CXX) -c $(CPPFLAGS) $(CXXFLAGS)
+CC             = avr-gcc
+CXX            = avr-g++
+
+# Override is only needed by avr-lib build system.
+override CFLAGS        = -g -Wall $(OPTIMIZE) -mmcu=$(MCU_TARGET) $(DEFS)
+override CPPFLAGS      = -g -Wall $(OPTIMIZE) -mmcu=$(MCU_TARGET) $(DEFS)
+override LDFLAGS       = -Wl
+#override LDFLAGS       = -Wl,-Map,$(PRG).map
+
+OBJCOPY        = avr-objcopy
+OBJDUMP        = avr-objdump
+
+# (this is the default rule since it's first)
+all: $(PRG).a 
+
+clean:
+	rm -vrf src/*.o $(PRG).a 
+
+
+# make the library file
+$(PRG).a: $(OBJ)
+	avr-ar -v -ru $(PRG).a $(OBJ)
+
+# rebuild the obj files if any .hpp changes
+$(OBJ):		$(HEADERS)
+
+$(PRG).elf: $(OBJ)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
+
+%.bin: %.elf
+	$(OBJCOPY) -j .text -j .data -O binary $< $@
+
