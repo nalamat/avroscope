@@ -32,8 +32,8 @@
  * Template Library (STL) in order to keep the program size small.
 */
 
-#ifndef SMS_CONTROLLER_QUEUE_H
-#define SMS_CONTROLLER_QUEUE_H
+#ifndef __AVROSCOPE_QUEUE_H__
+#define __AVROSCOPE_QUEUE_H__
 
 /*
  * note: only for char*
