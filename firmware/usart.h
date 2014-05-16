@@ -22,13 +22,11 @@
  *************************************************************************/
 
 /*
- * vasete ertebate serial ba micro,
- * ghabl az estefade bayad tanha yek bar ba
- * farakhandane usart_init() rah andazi shavad,
- * ersale dade tavassote usart_send_str() anjam mishavad,
- * dade haye daryafti dar interrupte RXC dar yek queue
- * push mishavand ta loope asliye barname hengame niyaz
- * anha ra bekhanad
+ * Universal Synchronous/Asynchronous Receiver/Transmitter peripheral (USART)
+ * interface. Initialize the peripheral by calling 'usart_init' once. Data can
+ * be sent using 'usart_send_str'. When notified by RXC interrupt, received
+ * data are pushed into the 'usart_recv_buf' queue, read them in application's
+ * main loop when required.
 */
 
 #ifndef __AVROSCOPE_USART_H__
@@ -41,22 +39,18 @@ extern queue_str usart_recv_buf;
 void usart_init();
 void usart_send_char(const char ch);
 /*
- * sends each character of the given string
- * in order, plus an optional ending character:
- * end=true		=> cr (\r 13)
- * end=false	=> ctrl+z (26)
+ * Sends each character of the given string in order.
 */
 void usart_send_str(const char *str);
 /*
- * waits until a character is received
- * note: this function is blocking
+ * Waits until a character is received.
+ * Note: This function is blocking.
 */
 char usart_recv_char();
 /*
- * sets a callback for when data arrives
- * data is stored in usart_recv_buf
+ * Sets a callback for when data arrives data is stored in 'usart_recv_buf'
  * without leading and ending \r\n
- * note: it doesn't block the run
+ * Note: This function is non-blocking.
 */
 void usart_recv_set(void (*call)());
 
