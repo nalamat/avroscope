@@ -48,7 +48,7 @@
 #include "adc.h"
 #include "queue.h"
 
-uchar read_string[] = "Hoorrrraaa! :D";
+uchar read_string[] = "Hoorrrraaay! :D";
 int read_integer = 0;
 uchar read_switches[4];
 int read_adc = 0;
@@ -56,17 +56,22 @@ int adc_buffer[ADC_BUFFER_SIZE];
 int adc_buffer_len = 1;
 int adc_buffer_index = 0;
 
-// this gets called when custom control message is received
-USB_PUBLIC uchar usbFunctionSetup(uchar data[8]) {
-    usbRequest_t *rq = (usbRequest_t *)(void *)data; // cast data to correct type
+// Called when a custom control message is received
+USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
+{
+	// Cast data to correct type
+    usbRequest_t *rq = (usbRequest_t *)(void *)data;
 	
-	switch(rq->bRequest) // custom command is in the bRequest field
+	// Custom command is in the bRequest field
+	switch(rq->bRequest)
 	{
 		case USB_LED_ON:
-			PORTC |= 1; // turn LED on
+			// Turn LED on
+			PORTC |= 1;
 			return 0;
 		case USB_LED_OFF:
-			PORTC &= ~1; // turn LED off
+			// Turn LED off
+			PORTC &= ~1;
 			return 0;
 		case USB_READ_STRING:
 			usbMsgPtr = (int)read_string;
@@ -95,7 +100,8 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8]) {
 			return sizeof(int)*tmp;
 	}
 
-    return 0; // should not get here
+	// Should not get here
+    return 0;
 }
 
 void timer_init()
@@ -151,23 +157,28 @@ int main()
 	adc_init();
 	adc_turn_on();
 	
-	wdt_enable(WDTO_1S); // enable 1s watchdog timer
+	// Enable 1s watchdog timer
+	wdt_enable(WDTO_1S);
 	usbInit();
 	
-	usbDeviceDisconnect(); // enforce re-enumeration
-	for (uchar i = 0; i<250; i++) // wait 500 ms
+	// Enforce USB re-enumeration
+	usbDeviceDisconnect();
+	for (uchar i = 0; i<250; i++)    // Wait 500ms
 	{
-		wdt_reset(); // keep the watchdog happy
+		// Keep the watchdog happy
+		wdt_reset();
 		_delay_ms(2);
 	}
 	usbDeviceConnect();
 	
-	sei(); // Enable interrupts after re-enumeration
+	// Enable interrupts after USB re-enumeration
+	sei();
 	PORTC = 0b00000001;
 	
 	while (1)
 	{
-		wdt_reset(); // keep the watchdog happy
+		// Keep the watchdog happy
+		wdt_reset();
 		usbPoll();
 		adc_push();
 		
