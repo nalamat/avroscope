@@ -22,11 +22,11 @@
  *************************************************************************/
 
 /*
- * common utility
+ * Common utility functions and defines
 */
 
-#ifndef SMS_CONTROLLER_COMMON_H
-#define SMS_CONTROLLER_COMMON_H
+#ifndef __AVROSCOPE_COMMON_H__
+#define __AVROSCOPE_COMMON_H__
 
 #include <stdlib.h>
 
