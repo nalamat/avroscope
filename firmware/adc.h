@@ -22,10 +22,8 @@
  *************************************************************************/
 
 /*
- * vasete kar ba mobaddele analog be digitale micro,
- * shamele tavabei baraye rahandaziye avvalie, roshan
- * kardan, khamush kardan va khandane voltaje yek
- * pin az porte A
+ * Analog to digital peripheral (ADC) interface, including functions to
+ * initialize, power on, power off and read a desired pin's voltage
 */
 
 #ifndef SMS_CONTROLLER_ADC_H
@@ -34,7 +32,7 @@
 void adc_init();
 void adc_turn_on(bool adie=false);
 void adc_turn_off();
-int adc_read(char pin);
+int  adc_read(char pin);
 void adc_read_start(char pin);
 bool adc_read_ended();
 
