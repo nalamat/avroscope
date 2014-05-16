@@ -29,11 +29,24 @@
 #ifndef __AVROSCOPE_ADC_H__
 #define __AVROSCOPE_ADC_H__
 
+// Initialize the ADC peripheral without turning it on
 void adc_init();
+
+// Power on the ADC peripheral, make sure 'adc_init' is called before
+// 'adc_turn_on'. In order to enable asynchronous reading of ADC,
+// set 'adie' to true
 void adc_turn_on(bool adie=false);
+
+// Power of the ADC peripheral
 void adc_turn_off();
-int  adc_read(char pin);
+
+// Synchronously read the digitized analog voltage of a desired pin on port A.
+// 'pin' can be 0 through 7, the returned value is in range of 0-1023 linearly
+// mapped from 0.0v-4.995v
+int adc_read(char pin);
+
 void adc_read_start(char pin);
+
 bool adc_read_ended();
 
 #endif
