@@ -27,6 +27,11 @@
  * az STL estefade nashod
 */
 
+/*
+ * Queue and Linked List data structure definitions. Didn't use Standard
+ * Template Library (STL) in order to keep the program size small.
+*/
+
 #ifndef SMS_CONTROLLER_QUEUE_H
 #define SMS_CONTROLLER_QUEUE_H
 
