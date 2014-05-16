@@ -26,8 +26,8 @@
  * initialize, power on, power off and read a desired pin's voltage
 */
 
-#ifndef SMS_CONTROLLER_ADC_H
-#define SMS_CONTROLLER_ADC_H
+#ifndef __AVROSCOPE_ADC_H__
+#define __AVROSCOPE_ADC_H__
 
 void adc_init();
 void adc_turn_on(bool adie=false);
