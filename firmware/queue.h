@@ -22,13 +22,7 @@
  *************************************************************************/
 
 /*
- * do sakhtemane dadeye queue va link list,
- * baraye parhiz az afzayeshe hajme khoruji
- * az STL estefade nashod
-*/
-
-/*
- * Queue and Linked List data structure definitions. Didn't use Standard
+ * Queue and Link data structure definitions. Didn't use the Standard
  * Template Library (STL) in order to keep the program size small.
 */
 
@@ -36,8 +30,7 @@
 #define __AVROSCOPE_QUEUE_H__
 
 /*
- * note: only for char*
- * link used by queue for dynamic storage
+ * Used by queue for dynamic storage. (Only for char*)
 */
 class link_str
 {
@@ -50,10 +43,8 @@ public:
 };
 
 /*
- * note: only for char*
- * all the memory management is taken care of
- * after calling the pop() function, never use
- * the data fetched by top() after calling pop()
+ * All memory management is taken care of after calling the 'pop' function,
+ * never use data fetched by 'top' after calling 'pop'. (Only for char*)
 */
 class queue_str
 {
@@ -69,9 +60,9 @@ public:
 };
 
 
-/////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
-// only for int
+// Note: Only for int
 class link_int
 {
 public:
@@ -82,7 +73,7 @@ public:
 	~link_int();
 };
 
-// only for int
+// Note: Only for int
 class queue_int
 {
 private:
