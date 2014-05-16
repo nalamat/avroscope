@@ -31,8 +31,8 @@
  * anha ra bekhanad
 */
 
-#ifndef SMS_CONTROLLER_USART_H
-#define SMS_CONTROLLER_USART_H
+#ifndef __AVROSCOPE_USART_H__
+#define __AVROSCOPE_USART_H__
 
 #include "queue.h"
 
