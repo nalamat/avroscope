@@ -2,8 +2,8 @@
  *                                                                       *
  * This file is a part of the AVROscope project:                         *
  * A Low-Cost Low-Frequency USB Oscilloscope                             *
- * Copyright (C) 2013-2014, Nima Alamatsaz, All rights reserved          *
- * Email: nnalamat@gmail.com                                             *
+ * Copyright (C) 2013-2014 Nima Alamatsaz, All rights reserved           *
+ * Email: nialamat@gmail.com                                             *
  * Web:   http://github.com/nalamat/avroscope                            *
  *                                                                       *
  * AVROscope is free software: you can redistribute the software         *
