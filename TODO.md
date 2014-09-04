@@ -3,3 +3,7 @@
 - [ ] modify spdt and pbsw footprints
 - [ ] change isp header pins to match isp programmer's
 - [ ] modify input signal capacitors
+- [ ] migrate to an ARM MCU
+- [ ] upgrade to USB 2.0
+- [ ] compress waveform data before transmission over USB
+- [ ] add a high sampling rate ADC
