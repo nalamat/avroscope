@@ -5,3 +5,6 @@ hardware/Project Outputs for avroscope
 hardware/__Previews
 interface/bin
 interface/obj
+*.atsuo
+*.suo
+*.dbk
